@@ -1,0 +1,26 @@
+NVCC=nvcc -O0
+
+.PHONY: clear
+clear:
+	@ rm -f *.o
+	@ rm -f ./main
+
+main: ./zmain.cu
+	$(NVCC) ./zmain.cu -o ./main
+
+all: main
+	./main
+	@ make --no-print-directory clear
+
+# %.o: %.cu
+# 	$(NVCC) -c $^ -o $@
+# %.o: %.cpp
+# 	$(NVCC) -c $^ -o $@
+
+# CPP_SRC=$(wildcard *.cpp)
+# CPP_OBJ=$(CPP_SRC:.cpp=.o)
+# CUDA_SRC=$(wildcard *.cu)
+# CUDA_OBJ=$(CUDA_SRC:.cu=.o)
+
+# all: $(CPP_OBJ) $(CUDA_OBJ)
+# 	$(NVCC) $(CPP_OBJ) $(CUDA_OBJ) -o ./main
