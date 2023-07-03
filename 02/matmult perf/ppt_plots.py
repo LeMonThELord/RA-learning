@@ -20,6 +20,7 @@ sources = {
     "pthread & cuda time compare": ["total-pthread-16.csv", "total-cuda.csv"],
     "pthread & cuda fair compare": ["total-row-cuda-16.csv", "total-pthread-16.csv", "total-row-cuda-64.csv", "total-pthread-64.csv"],
     "pthread & cuda match compare": ["total-row-cuda-8.csv", "total-pthread-8.csv","total-pthread-16.csv", "total-row-cuda-64.csv", "total-row-cuda-128.csv", "total-row-cuda-512.csv", "total-row-cuda-1024.csv", "total-row-cuda-2048.csv", "total-row-cuda-4096.csv"],
+    "small pthread": ["total-pthread-1.csv", "total-pthread-8.csv", "total-pthread-16.csv"],
 }
 
 def clean_outliner_data(array, threshold=0.7):    
@@ -123,3 +124,4 @@ if __name__ == "__main__":
             ppt_plot(plot_title, designed_style=True)
         else:
             ppt_plot(plot_title)
+    ppt_plot("small pthread", smoothed=True, data_range=(0, 100), figsize=(5, 5))
