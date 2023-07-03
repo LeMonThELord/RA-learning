@@ -70,8 +70,6 @@ $(BUILD_DIR) $(DEBUG_DIR) $(BIN_DIR) $(DATA_DIR):
 clean:
 	@rm -rf $(DEBUG_DIR)
 	@rm -rf $(BUILD_DIR)
-
-clean-data:
 	@rm -rf $(DATA_DIR)
 
 debug-make:
