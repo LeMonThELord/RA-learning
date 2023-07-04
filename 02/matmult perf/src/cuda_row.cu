@@ -25,6 +25,7 @@ __global__ void matrixMultiplication(float *A, float *B, float *R, int R_rows, i
     int stride = blockDim.x * gridDim.x;
     for (int i = index; i < R_rows; i += stride)
     {
+        // TODO: Allocation might hurt performance
         float *temp = new float[R_cols];
         for (int j = 0; j < R_cols; j++)
         {
@@ -34,9 +35,10 @@ __global__ void matrixMultiplication(float *A, float *B, float *R, int R_rows, i
         {
             for (int k = 0; k < M_dims; k++)
             {
-                temp[k] += A[i * M_dims + j] * B[j * R_cols + k];
+                temp[j] += A[i * M_dims + j] * B[j * R_cols + k];
             }
         }
+        // TODO: Memcpy might hurt performance
         memcpy(&R[i * R_cols], temp, R_cols * sizeof(float));
         delete[] temp;
     }
